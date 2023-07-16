@@ -128,14 +128,44 @@ export default function FormCard() {
   const [tokenName, setTokenName] = useState(`gdrive-${Date.now()}`);
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [rowSelection, setRowSelection] = useState({});
 
-  const handleTokenNameChange = (e) => setTokenName(e.target.value);
-  const handleClientIdChange = (e) => setClientId(e.target.value);
-  const handleClientSecretChange = (e) => setClientSecret(e.target.value);
+  const [tokenNameError, setTokenNameError] = useState("");
+  const [clientIdError, setClientIdError] = useState("");
+  const [clientSecretError, setClientSecretError] = useState("");
+  const [scopeError, setScopeError] = useState("");
+
+  const handleTokenNameError = (msg) => setTokenNameError(msg);
+  const handleClientIdError = (msg) => setClientIdError(msg);
+  const handleClientSecretError = (msg) => setClientSecretError(msg);
+  const handleScopeError = (msg) => setScopeError(msg);
+
+  const handleTokenNameChange = (e) => {
+    setTokenName(e.target.value);
+    handleTokenNameError("");
+  };
+  const handleClientIdChange = (e) => {
+    setClientId(e.target.value);
+    handleClientIdError("");
+  };
+  const handleClientSecretChange = (e) => {
+    setClientSecret(e.target.value);
+    handleClientSecretError("");
+  };
+
+  const handleRowSelectionChange = (newSelection) => {
+    setRowSelection(newSelection);
+    handleScopeError("");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (tokenName === "") return handleTokenNameError("Token name is required.");
+    if (clientId === "") return handleClientIdError("Client ID is required.");
+    if (clientSecret === "") return handleClientSecretError("Client secret is required.");
+    if (Object.keys(rowSelection).length === 0)
+      return handleScopeError("Please select at least one scope.");
 
     const selectedScopes = Object.keys(rowSelection).map((index) => data[index].id);
 
@@ -165,34 +195,49 @@ export default function FormCard() {
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Token Name</Label>
-              <Input id="name" value={tokenName} onChange={handleTokenNameChange} />
+              <Input
+                id="tokenName"
+                type="text"
+                value={tokenName}
+                onChange={handleTokenNameChange}
+                error={tokenNameError !== ""}
+              />
+              {tokenNameError !== "" && <p className="text-red-500 text-sm">{tokenNameError}</p>}
             </div>
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Client ID</Label>
               <Input
-                id="name"
+                id="clientId"
+                tyoe="text"
                 placeholder="Client ID of your project"
                 value={clientId}
                 onChange={handleClientIdChange}
+                error={clientIdError !== ""}
               />
+              {clientIdError !== "" && <p className="text-red-500 text-sm">{clientIdError}</p>}
             </div>
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="name">Client Secret</Label>
               <Input
-                id="name"
+                id="clientSecret"
+                type="password"
                 placeholder="Client Secret of your project"
                 value={clientSecret}
                 onChange={handleClientSecretChange}
+                error={clientSecretError !== ""}
               />
+              {clientSecretError !== "" && (
+                <p className="text-red-500 text-sm">{clientSecretError}</p>
+              )}
             </div>
 
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="datatable">Scopes</Label>
               <Dialog>
                 <DialogTrigger asChild>
-                  <Button variant="outline">Select Scopes</Button>
+                  <Button variant={scopeError ? "destructive" : "outline"}>Select Scopes</Button>
                 </DialogTrigger>
                 <DialogContent className="md:max-w-[500px] sm:max-h-[500px] sm:overflow-y-scroll sm:max-w-[100%] sm:max-h-[90%]">
                   <DialogHeader>
@@ -207,7 +252,7 @@ export default function FormCard() {
                       columns={columns}
                       data={data}
                       rowSelection={rowSelection}
-                      onRowSelectionChange={setRowSelection}
+                      onRowSelectionChange={handleRowSelectionChange}
                     />
                   </div>
                 </DialogContent>
