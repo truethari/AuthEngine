@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Github } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
@@ -93,25 +93,20 @@ export default function Navbar() {
 
             <li>
               <Link
-                href="/google"
+                href="/privacy"
                 className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
                 aria-current="page"
               >
-                Google Auth
+                Privacy Policy
               </Link>
             </li>
-
-            <li>
-              <Link
-                href="/"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
-                aria-current="page"
-              >
-                Contact
-              </Link>
-            </li>
-            <ModeToggle />
           </ul>
+        </div>
+        <div className="flex items-center justify-center">
+          <a href="https://github.com/truethari/AuthEngine" target="_blank">
+            <Github className="mr-2" />
+          </a>
+          <ModeToggle />
         </div>
       </div>
     </nav>

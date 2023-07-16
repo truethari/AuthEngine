@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import axios from "axios";
 
 import { Button } from "@/components/ui/button";
@@ -209,7 +210,7 @@ export default function FormCard() {
     };
 
     setOpenSubmitLoading(true);
-    const response = await axios.post("/api/gdrive/authurl", body);
+    const response = await axios.post("/api/google/authurl", body);
     setOpenSubmitLoading(false);
 
     setAuthUrl(response.data.authUrl);
@@ -258,8 +259,15 @@ export default function FormCard() {
 
   return (
     <>
-      <Card className="h-[80%] w-[100%] flex flex-col justify-center">
+      <Card className="h-[80%] w-[100%] flex flex-col justify-center overflow-hidden">
         <CardHeader>
+          <Image
+            className="pb-5"
+            src="/images/services/google-logo-9834.png"
+            width={100}
+            height={50}
+            alt="google-logo"
+          />
           <CardTitle>Create Token</CardTitle>
           <CardDescription>Generate your Google API token in one-click.</CardDescription>
         </CardHeader>

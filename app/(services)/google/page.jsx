@@ -1,5 +1,5 @@
-import FormCard from "@/components/drives/gdrive/formCard";
-import ContentCard from "@/components/drives/gdrive/contentCard";
+import FormCard from "@/components/services/google/formCard";
+import ContentCard from "@/components/services/google/contentCard";
 
 export default function GDrive() {
   return (
