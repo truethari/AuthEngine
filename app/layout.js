@@ -1,4 +1,6 @@
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/common/navbar";
 
 export const metadata = {
   title: "Generate Google Token | @truethari",
@@ -9,7 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar />
+          <div className="md:mt-0 sm:mt-[75px]">{children}</div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

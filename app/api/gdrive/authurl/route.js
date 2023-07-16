@@ -28,7 +28,7 @@ export async function POST(request) {
   const credentials = {
     client_id: requestBody.clientId,
     client_secret: requestBody.clientSecret,
-    redirect_uris: [`${host}/gdrive/oauth/callback`],
+    redirect_uris: [`${host}/google/oauth/callback`],
   };
 
   const oAuth2Client = new OAuth2(

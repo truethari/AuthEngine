@@ -15,11 +15,11 @@ export default function GDriveCallback({ searchParams }) {
     if (searchParams.code) {
       localStorage.setItem("gdriveCode", searchParams.code);
       setSuccess(true);
-      router.push("/gdrive/oauth/callback?success=true");
+      router.push("/google/oauth/callback?success=true");
       setMessage("Successfully authenticated with Google Drive");
     } else {
       setMessage("Failed to authenticate with Google Drive");
-      router.push("/gdrive/oauth/callback?success=false");
+      router.push("/google/oauth/callback?success=false");
     }
     setLoading(false);
   }, []);
