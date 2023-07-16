@@ -5,14 +5,6 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { DataTable } from "@/components/common/datatable";
@@ -26,6 +18,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const asyncLocalStorage = {
   setItem(key, value) {
@@ -242,6 +242,15 @@ export default function FormCard() {
     }
   }, [authUrlOpened]);
 
+  const [copyToClipboardText, setCopyToClipboardText] = useState("Copy to Clipboard");
+
+  const handleCopyAuthCodeToClipboard = () => {
+    navigator.clipboard.writeText(authCode);
+
+    setCopyToClipboardText("Copied! ✅");
+    setTimeout(() => setCopyToClipboardText("Copy to Clipboard"), 3000);
+  };
+
   const openUrlInNewTab = () => {
     setAuthUrlOpened(true);
     window.open(authUrl, "_blank", "noopener noreferrer");
@@ -303,7 +312,7 @@ export default function FormCard() {
                   <DialogTrigger asChild>
                     <Button variant={scopeError ? "destructive" : "outline"}>Select Scopes</Button>
                   </DialogTrigger>
-                  <DialogContent className="md:max-w-[500px] sm:overflow-y-scroll sm:max-w-[100%] sm:max-h-[90%]">
+                  <DialogContent className="md:max-w-[500px] md:max-h-[535px] sm:max-w-[100%] sm:max-h-[90%]">
                     <DialogHeader>
                       <DialogTitle>Select API Scopes</DialogTitle>
                       <DialogDescription>
@@ -369,34 +378,38 @@ export default function FormCard() {
       <Dialog open={openSubmitDialog} onOpenChange={setOpenSubmitDialog}>
         <DialogContent className="md:max-w-[500px] sm:overflow-y-scroll sm:max-w-[100%] sm:max-h-[90%]">
           <DialogHeader>
-            <DialogTitle>Select API Scopes</DialogTitle>
+            <DialogTitle>
+              Generate auth details for <span className="font-bold">{tokenName}</span>
+            </DialogTitle>
             <DialogDescription>
-              Select scopes here. Click close button when you're done.
+              Complete the following steps to generate auth details for your project.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="flex flex-col space-y-1.5">
-              <Label htmlFor="name">Auth Url</Label>
-              <Input
-                id="authUrl"
-                type="text"
-                placeholder="Auth URL of your project"
-                value={authUrl}
-                onChange={handleAuthUrlChange}
-              />
-              <p className="text-gray-500 text-sm">
-                Changing the auth url will invalidate the previous auth url.
-              </p>
-            </div>
+            {!authCode ? (
+              <>
+                <div className="flex flex-col space-y-1.5">
+                  <Label htmlFor="name">Auth Url</Label>
+                  <Input
+                    id="authUrl"
+                    type="text"
+                    placeholder="Auth URL of your project"
+                    value={authUrl}
+                    onChange={handleAuthUrlChange}
+                  />
+                  <p className="text-gray-500 text-sm">
+                    Changing the auth url will invalidate the previous API details.
+                  </p>
+                </div>
 
-            <Button onClick={openUrlInNewTab}>Open link in new tab</Button>
-
-            {authUrlOpened && (
+                <Button onClick={openUrlInNewTab}>Open link in new tab</Button>
+              </>
+            ) : (
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Paste the code here</Label>
+                <Label htmlFor="name">Copy the code</Label>
                 <Input
                   id="authUrl"
-                  type="text"
+                  type="password"
                   placeholder="Auth URL of your project"
                   value={authCode}
                   onChange={(e) => setAuthCode(e.target.value)}
@@ -405,6 +418,9 @@ export default function FormCard() {
                 <p className="text-gray-500 text-sm">
                   The code will be automatically added here when you complete the auth flow.
                 </p>
+                <Button onClick={handleCopyAuthCodeToClipboard} disabled={!authCode}>
+                  {copyToClipboardText}
+                </Button>
               </div>
             )}
           </div>

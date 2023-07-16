@@ -35,5 +35,9 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@types/node": "20.4.2",
+    "@types/react": "18.2.15"
   }
 }
