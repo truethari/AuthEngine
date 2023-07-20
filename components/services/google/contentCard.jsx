@@ -59,7 +59,7 @@ export default function ContentCard() {
                 <div className="p-4">
                   <div className="font-semibold text-lime-600"> Origin: {host}</div>
                   <div className="font-semibold text-lime-600">
-                    Redirect URI: {host}/api/google/oauth/callback
+                    Redirect URI: {host}/google/oauth/callback
                   </div>
                 </div>
               </li>

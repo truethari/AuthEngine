@@ -21,7 +21,7 @@ export default function GDriveCallback({ searchParams }) {
       router.push("/google/oauth/callback?success=false");
     }
     setLoading(false);
-  }, [router, searchParams]);
+  }, []);
 
   return (
     <>
