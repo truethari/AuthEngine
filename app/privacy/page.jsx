@@ -2,6 +2,12 @@ import React from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
+export const metadata = {
+  title: "Privacy | AuthEngine",
+  description:
+    "Protecting Your Privacy: Our Commitment to Transparency and Security. Discover how AuthEngine safeguards your data, respecting your privacy at every step. Learn about our stringent measures and dedication to keeping your information secure and confidential.",
+};
+
 export default function Privacy() {
   return (
     <>

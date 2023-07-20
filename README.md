@@ -2,7 +2,11 @@
 
 ![AuthEngine](/public/images/authengine.png?raw=true "AuthEngine")
 
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=auth-engine)
+
 AuthEngine is a powerful and efficient token generation solution designed to simplify the authentication process across various services like Google and more. With AuthEngine, you can seamlessly generate secure tokens that enable integration and authentication between your application and external services.
+
+Link: [https://auth-engine.vercel.app](https://auth-engine.vercel.app)
 
 ## Table of Contents
 - [Introduction](#introduction)
