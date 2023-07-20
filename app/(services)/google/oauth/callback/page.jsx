@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function GDriveCallback({ searchParams }) {
+export default function GDriveCallback(props) {
+  const searchParams = useSearchParams();
+
   const [loading, setLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState("");
@@ -11,8 +13,10 @@ export default function GDriveCallback({ searchParams }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (searchParams.code) {
-      localStorage.setItem("gdriveCode", searchParams.code);
+    const code = searchParams.get("code");
+
+    if (code) {
+      localStorage.setItem("gdriveCode", code);
       setSuccess(true);
       router.push("/google/oauth/callback?success=true");
       setMessage("Successfully authenticated with Google Drive");
