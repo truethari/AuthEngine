@@ -11,7 +11,6 @@ export default function GDriveCallback({ searchParams }) {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(searchParams);
     if (searchParams.code) {
       localStorage.setItem("gdriveCode", searchParams.code);
       setSuccess(true);
@@ -22,7 +21,7 @@ export default function GDriveCallback({ searchParams }) {
       router.push("/google/oauth/callback?success=false");
     }
     setLoading(false);
-  }, []);
+  }, [router, searchParams]);
 
   return (
     <>

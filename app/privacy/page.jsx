@@ -28,11 +28,12 @@ export default function Privacy() {
             <div className="text-lg font-semibold	mt-7">Log Data</div>
             <p>
               Like many open-source projects, we may collect information that your browser sends
-              whenever you use our Service ("Log Data"). This Log Data may include information such
-              as your computer's Internet Protocol ("IP") address, browser type, browser version,
-              the pages of our Service that you visit, the time and date of your visit, the time
-              spent on those pages, and other statistics. However, this data is used purely for
-              statistical purposes, and it is not linked to any personally identifiable information.
+              whenever you use our Service (&quot;Log Data&quot;). This Log Data may include
+              information such as your computer&apos;s Internet Protocol (&quot;IP&quot;) address,
+              browser type, browser version, the pages of our Service that you visit, the time and
+              date of your visit, the time spent on those pages, and other statistics. However, this
+              data is used purely for statistical purposes, and it is not linked to any personally
+              identifiable information.
             </p>
 
             <div className="text-lg font-semibold	mt-7">Cookies</div>

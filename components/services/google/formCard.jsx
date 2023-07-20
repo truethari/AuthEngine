@@ -324,7 +324,7 @@ export default function FormCard() {
                     <DialogHeader>
                       <DialogTitle>Select API Scopes</DialogTitle>
                       <DialogDescription>
-                        Select scopes here. Click close button when you're done.
+                        Select scopes here. Click close button when you&apos;re done.
                       </DialogDescription>
                     </DialogHeader>
                     <div className="grid gap-4 py-4">
