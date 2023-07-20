@@ -49,10 +49,6 @@ AuthEngine respects and values user privacy. This section outlines how AuthEngin
 
 AuthEngine does not collect any personally identifiable information (PII) or sensitive data from its users. We are committed to ensuring that your interactions with this project remain anonymous and secure.
 
-### Log Data
-
-Like many open-source projects, AuthEngine may collect non-personally identifiable information in server logs, such as your device's IP address, browser type, operating system, and usage statistics. This data is collected solely for the purpose of improving the performance, security, and user experience of the project.
-
 ### Third-Party Services
 
 This project may integrate with or provide links to third-party services. Please note that our privacy policy does not extend to these external services. We encourage you to review the privacy policies of these third-party services separately to understand their data collection and handling practices.

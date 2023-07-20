@@ -31,17 +31,6 @@ export default function Privacy() {
               without storing or processing any user data.
             </p>
 
-            <div className="text-lg font-semibold	mt-7">Log Data</div>
-            <p>
-              Like many open-source projects, we may collect information that your browser sends
-              whenever you use our Service (&quot;Log Data&quot;). This Log Data may include
-              information such as your computer&apos;s Internet Protocol (&quot;IP&quot;) address,
-              browser type, browser version, the pages of our Service that you visit, the time and
-              date of your visit, the time spent on those pages, and other statistics. However, this
-              data is used purely for statistical purposes, and it is not linked to any personally
-              identifiable information.
-            </p>
-
             <div className="text-lg font-semibold	mt-7">Cookies</div>
             <p>We do not use cookies or any similar tracking technologies on our Service.</p>
 
